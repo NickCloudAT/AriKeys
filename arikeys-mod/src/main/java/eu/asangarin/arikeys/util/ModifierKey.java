@@ -2,7 +2,6 @@ package eu.asangarin.arikeys.util;
 
 import lombok.Getter;
 import com.mojang.blaze3d.platform.InputConstants;
-import org.lwjgl.glfw.GLFW;
 
 import java.util.HashSet;
 import java.util.Set;
@@ -10,12 +9,12 @@ import java.util.Set;
 @Getter
 public enum ModifierKey {
 	NONE(-1, -1),
-	LEFT_CTRL(4, GLFW.GLFW_KEY_LEFT_CONTROL),
-	LEFT_SHIFT(0, GLFW.GLFW_KEY_LEFT_SHIFT),
-	LEFT_ALT(2, GLFW.GLFW_KEY_LEFT_ALT),
-	RIGHT_CTRL(5, GLFW.GLFW_KEY_RIGHT_CONTROL),
-	RIGHT_SHIFT(1, GLFW.GLFW_KEY_RIGHT_SHIFT),
-	RIGHT_ALT(3, GLFW.GLFW_KEY_RIGHT_ALT);
+	LEFT_CTRL(4, InputConstants.KEY_LCONTROL),
+	LEFT_SHIFT(0, InputConstants.KEY_LSHIFT),
+	LEFT_ALT(2, InputConstants.KEY_LALT),
+	RIGHT_CTRL(5, InputConstants.KEY_RCONTROL),
+	RIGHT_SHIFT(1, InputConstants.KEY_RSHIFT),
+	RIGHT_ALT(3, InputConstants.KEY_RALT);
 
 	public final static ModifierKey[] ALL = new ModifierKey[] {
 			LEFT_CTRL, LEFT_SHIFT, LEFT_ALT, RIGHT_CTRL, RIGHT_SHIFT, RIGHT_ALT
@@ -28,7 +27,7 @@ public enum ModifierKey {
 	ModifierKey(int id, int code) {
 		this.id = id;
 		this.code = code;
-		this.key = InputConstants.Type.KEYSYM.getOrCreate(code);
+		this.key = InputConstants.Type.KEYBOARD.getOrCreate(code);
 		this.translationKey = "arikeys.modifier." + name().toLowerCase();
 	}
 

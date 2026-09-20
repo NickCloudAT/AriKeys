@@ -64,14 +64,14 @@ public class AriKeyControlsListWidget extends ContainerObjectSelectionList<AriKe
 		}
 
         public void extractContent(GuiGraphicsExtractor context, int mouseX, int mouseY, boolean hovered, float deltaTicks) {
-            assert minecraft.screen != null;
+            assert minecraft.gui.screen() != null;
 
             // Entry bounds are now accessible via this.getX(), this.getY(), this.getWidth(), this.getHeight()
             int x = this.getX();
             int y = this.getY();
             int entryHeight = this.getHeight();
 
-            int width = (minecraft.screen.width / 2 - this.textWidth / 2);
+            int width = (minecraft.gui.screen().width / 2 - this.textWidth / 2);
             int height = y + entryHeight;
 
             context.text(minecraft.font, this.text, width, height - 9 - 1, CommonColors.WHITE, false);

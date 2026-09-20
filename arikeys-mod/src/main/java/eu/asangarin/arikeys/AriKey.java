@@ -22,7 +22,7 @@ public class AriKey {
 	private Set<ModifierKey> boundModifiers;
 
 	public AriKey(KeyAddData data) {
-		this(data.getId(), data.getName(), data.getCategory(), InputConstants.Type.KEYSYM.getOrCreate(data.getDefKey()), data.getModifiers());
+		this(data.getId(), data.getName(), data.getCategory(), InputConstants.Type.KEYBOARD.getOrCreate(data.getDefKey()), data.getModifiers());
 	}
 
 	public AriKey(Identifier id, String name, String category, InputConstants.Key keyCode, int[] modifiers) {
@@ -39,7 +39,7 @@ public class AriKey {
 		if (handleModifiers) {
 			Set<ModifierKey> mods = new HashSet<>();
 			for (ModifierKey modifier : ModifierKey.ALL)
-				if (InputConstants.isKeyDown(Minecraft.getInstance().getWindow(), modifier.getCode())) mods.add(modifier);
+				if (InputConstants.isKeyDown(modifier.getCode())) mods.add(modifier);
 			setBoundModifiers(mods);
 		}
 		this.boundKeyCode = key;
@@ -59,7 +59,7 @@ public class AriKey {
 
 	public boolean testModifiers() {
 		for (ModifierKey key : boundModifiers)
-			if (!InputConstants.isKeyDown(Minecraft.getInstance().getWindow(), key.getCode())) return false;
+			if (!InputConstants.isKeyDown(key.getCode())) return false;
 		return true;
 	}
 
